@@ -1,0 +1,22 @@
+// grid variables
+$grid-columns: 12;
+$grid-max-width: 90%;
+$small: 655px;
+$large: 1100px;
+
+
+%clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+//Colors
+$image-bg-color: #9e9c93;
+$color-2: #ffffff;

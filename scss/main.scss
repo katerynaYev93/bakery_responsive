@@ -1,0 +1,356 @@
+@import "compass/css3";
+@import "compass/reset";
+
+@import "variables";
+@import "mixins";
+
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  @include box-sizing(border-box);
+}
+
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper, .row {
+  @extend %clearfix;
+ // outline: 1px solid red;//!
+}
+
+[class*='column-'] {
+  float: left;
+  padding: 0;
+  width: 100%;
+  min-height: 1px;
+  //outline: 1px solid red;//!
+}
+
+@media only screen and (min-width: #{$large}) {
+  .wrapper {
+   // width: 100%;
+    max-width: $grid-max-width;
+  }
+  @for $i from 1 through $grid-columns {
+    .column-#{$i} {
+      width: 100% / $grid-columns * $i;
+    }
+  }
+}
+
+//Style for header
+
+header {
+  position: relative;
+  background-color: $image-bg-color;
+  background-image: url('../img/bake.jpg');
+  background-repeat: no-repeat;
+  @include background-size(cover);
+  background-position: center;
+  color: $color-2;
+
+  .row {
+    text-align: center;
+
+    a {
+      color: $color-2;
+      text-decoration: none;
+    }
+  }
+
+  .menu_wrapper {
+    width: 100%;
+    background-color: rgba(120, 117, 109, 0.8);
+
+    .column-2:first-of-type {
+      @include respond-to(handhelds) {
+        width: 50% !important;
+      }
+      .logo {
+        text-align: left;
+        font-family: "AR DECODE";
+        font-size: 50px;
+        letter-spacing: 0.1em;
+        @include respond-to(medium-screens) {
+          text-align: center;
+        }
+      }
+    }
+
+    .column-8 {
+      padding: 20px 0;
+      @include respond-to(handhelds) {
+        width: 50% !important;
+      }
+        nav {
+          @include respond-to(handhelds) {
+            position: relative;
+            min-height: 40px;
+          }
+          ul.main_nav {
+            @include respond-to(handhelds) {
+              text-align: right;
+              width: 150px;
+              padding: 5px 0;
+              position: absolute;
+              top: 0;
+              left: auto;
+              right: 0;
+              background: rgba(120, 117, 109, 0.8) url(../img/icon-menu.png) no-repeat 10px 11px;
+              border-radius: 5px;
+                &:hover {
+                  background-image: none;
+                  & li {
+                    display: block;
+                    margin: 0 0 5px;
+                  }
+                  & .current {
+                    background: url(../img/icon-check.png) no-repeat 10px 7px;
+                  }
+                }
+            }
+
+            li {
+              text-transform: uppercase;
+              display: inline-block;
+              font-size: 14px;
+              @include respond-to(handhelds) {
+                display: none; /* скрыть все <li> пункты */
+                margin: 0;
+              }
+              &.current {
+                @include respond-to(handhelds) {
+                  display: block;
+                }
+              }
+              span {
+                margin: 0 30px;
+                @include respond-to(handhelds) {
+                  display: none;
+                }
+              }
+              a {
+                @include respond-to(handhelds) {
+                  display: block;
+                  padding: 5px 5px 5px 32px;
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .social-links {
+      @include respond-to(handhelds) {
+        text-align: left;
+        margin-left: 13px;
+      }
+      li {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 20px 0;
+        @include respond-to(handhelds) {
+          padding: 0;
+        }
+
+        a {
+          height: 16px;
+          width: 16px;
+          display: block;
+        }
+      }
+    }
+    $icons: (twitter, facebook, instagram);
+    @each $social in $icons {
+      .#{$social} {
+        background: url("../img/#{$social}.png") no-repeat;
+      }
+    }
+
+  }
+
+  h1 {
+    margin-top: 15%;
+    font-family: "Myriad Pro";
+    font-size: 92px;
+  }
+
+  h2 {
+    margin: 7% auto 0;
+    font-family: "Myriad Pro";
+    font-size: 25px;
+    width: 50%;
+  }
+
+  .btn {
+    display: block;
+    text-transform: uppercase;
+    background-color: rgba(120, 117, 109, 0.8);
+    width: 100px;
+    height: 50px;
+    margin: 8% auto 8%;
+    line-height: 50px;
+  }
+
+  .header-deco {
+    width: 100%;
+    position: relative;
+
+    .line-deco {
+      width: 100%;
+      height: 10px;
+      background-color: #ffffff;
+    }
+
+    .circle-deco {
+      width: 80px;
+      height: 80px;
+      @include border-radius(50%);
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-image:url("../img/head-deco.png"),
+      radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 51%,rgba(255,255,255,1) 52%,rgba(255,255,255,0) 53%,rgba(255,253,252,0) 100%);
+      @include background-size(cover);
+    }
+  }
+
+main {
+  background-color: #fefcfd;
+
+  .cook {
+    .column-6 {
+      margin-top: 110px;
+      text-align: center;
+
+      h2 {
+        font-family: "Myriad Pro";
+        font-size: 35px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-family: "Myriad Pro";
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      p {
+        max-width: 489px;
+        margin: 0 auto 40px auto;
+      }
+
+      .chef {
+
+        h3 {
+          font-family: "Myriad Pro";
+          font-size: 15px;
+          text-transform: none;
+          margin-bottom: 20px;
+        }
+
+        span {
+          display: inline-block;
+        }
+
+        .chefName {
+          border-bottom: 1px solid sandybrown;
+          border-top: 1px solid sandybrown;
+          padding: 5px;
+        }
+
+        .chefImg {
+          width: 80px;
+          height: 80px;
+          @include border-radius(50%);
+          background: url("../img/chef.jpg") 30% 15%;
+          vertical-align: middle;
+          margin: 0 15px 0;
+        }
+
+        q {
+          display: block;
+          margin-top: 20px;
+        }
+      }
+
+      .cookGallery {
+        margin-top: 15px;
+        position: relative;
+
+        .galleryList {
+          li {
+            position: relative;
+            display: inline-block;
+            width: 295px;
+            height: 250px;
+            background-color: saddlebrown;
+            margin-right: 10px;
+
+            &:before {
+              position: absolute;
+              content: '';
+              top: 10px;
+              right: 10px;
+              bottom: 10px;
+              left: 10px;
+              border: 5px solid #fefcfd;
+            }
+
+            &:nth-child(2n) {
+              margin-right: 0;
+            }
+          }
+
+          $cookImgs: (gal1, gal2, gal3, gal4);
+          @each $cookImg in $cookImgs {
+            .#{$cookImg} {
+              background: url("../img/#{$cookImg}.jpg") no-repeat;
+            }
+          }
+
+        }
+
+        .galleryDeco {
+          margin: auto;
+          position: absolute;
+          top: 0; left: 0; bottom: 0; right: 0;
+          width: 270px;
+          height: 270px;
+          background-image: url("../img/vector.png");
+          filter: alpha(Opacity=80);
+          opacity: 0.8;
+          vertical-align: middle;
+
+          p {
+            line-height: 1.2em;
+            text-transform: uppercase;
+            font-size: 35px;
+            color: #d3bc9a;
+            height: 100px;
+            margin: 85px 0;
+          }
+
+        }
+      }
+    }
+
+  }
+}
+
